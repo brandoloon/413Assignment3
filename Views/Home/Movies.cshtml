@@ -1,0 +1,79 @@
+﻿@model IEnumerable<MovieModel>
+
+@{
+    ViewData["Title"] = "Movies";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Movies</h1>
+
+<p>
+    <a asp-action="AddMovie">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.category)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.year)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.director)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.rating)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.edited)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.lentTo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.notes)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Assignment3.Models.MovieModel movie in Model) 
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => movie.category)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => movie.title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => movie.year)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => movie.director)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => movie.rating)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => movie.edited)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => movie.lentTo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => movie.notes)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -23,11 +23,20 @@ namespace Assignment3.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult Movies()
+        {
+            return View(MovieStorage.Movies);
+        }
+        public IActionResult AddMovie()
         {
             return View();
         }
-
+        [HttpPost]
+        public IActionResult AddMovie(MovieModel movie)
+        {
+            MovieStorage.AddMovie(movie);
+            return View("Movies");
+        }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
