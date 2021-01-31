@@ -41,8 +41,10 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (Assignment3.Models.MovieModel movie in Model) 
+        @foreach (MovieModel movie in Model) 
         {
+            @if (movie.title != "Independence Day")
+            {
             <tr>
                 <td>
                     @Html.DisplayFor(modelItem => movie.category)
@@ -60,7 +62,7 @@
                     @Html.DisplayFor(modelItem => movie.rating)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => movie.edited)
+                    @(movie.edited ? "Yes" : "No")
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => movie.lentTo)
@@ -74,6 +76,7 @@
                     @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
                 </td>
             </tr>
+            }
         }
     </tbody>
 </table>

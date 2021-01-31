@@ -35,7 +35,7 @@ namespace Assignment3.Controllers
         public IActionResult AddMovie(MovieModel movie)
         {
             MovieStorage.AddMovie(movie);
-            return View("Movies");
+            return View("Success", movie);
         }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
