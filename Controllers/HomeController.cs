@@ -27,6 +27,10 @@ namespace Assignment3.Controllers
         {
             return View(MovieStorage.Movies);
         }
+        public IActionResult Podcasts()
+        {
+            return View();
+        }
         public IActionResult AddMovie()
         {
             return View();
