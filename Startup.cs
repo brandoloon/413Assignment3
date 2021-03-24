@@ -1,6 +1,8 @@
+using Assignment3.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -24,6 +26,11 @@ namespace Assignment3
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            services.AddDbContext<MovieDbContext>(options =>
+            {
+                options.UseSqlite(Configuration["ConnectionStrings:MoviesConnection"]);
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -49,8 +56,22 @@ namespace Assignment3
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    "Movies",
+                    "movies",
+                    new { Controller = "Home", action = "Movies" });
+                endpoints.MapControllerRoute(
+                    "add",
+                    "movies/add",
+                    new { Controller = "Home", action = "AddMovie" });
+                endpoints.MapControllerRoute(
+                    "edit",
+                    "movies/edit/{mid:int}",
+                    new { Controller = "Home", action = "EditMovie" });
+                endpoints.MapControllerRoute(
+                    "delete",
+                    "movies/delete/{mid:int}",
+                    new { Controller = "Home", action = "DeleteMovie" });
+                endpoints.MapDefaultControllerRoute();
             });
         }
     }

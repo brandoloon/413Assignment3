@@ -71,9 +71,8 @@
                     @Html.DisplayFor(modelItem => movie.notes)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                    <a asp-controller="Home" asp-action="EditMovie" asp-route-mid="@movie.ID">Edit</a> |
+                    <a asp-controller="Home" asp-action="DeleteMovie" asp-route-mid="@movie.ID">Delete</a>
                 </td>
             </tr>
             }
